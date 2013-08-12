@@ -1,4 +1,52 @@
 {% extends 'admin/master.html' %}
 {% block body %}
-    Hello World from MyView!
+    <div class="container">
+        <h2>Todo System</h2>
+        <div ng-controller="todoCtrl" class="row">
+            <div class = "col-lg-6">
+                <h3>Todo</h3>
+                <table class="table table-hover ">
+                  <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Completed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr ng-repeat="todo in todos">
+                        <td>{[{todo.title}]}</td>
+                        <td><input type="checkbox" ng-model="todo.completed" ng-change='changeTodo(todo)'>  </td>
+                        <td><button type="button" ng-click="delTodo(todo)">Del</button> </td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" ng-model="newTitle"> </td>
+                        <td><button type="button" class="btn" ng-click="addTodo()">Add</button></td>
+                    <tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class="col-lg-6"></div>
+
+        </div>
+    </div>
 {% endblock %}
+
+{% block tail_js %}
+    <script type="text/javascript" src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
+    <script type="text/javascript" src="/static/js/angular/todo.js"></script>
+	<script type="text/javascript" src="/static/js/angular/services.js"></script>
+	<script type="text/javascript" src="/static/js/angular/controllers.js"></script>
+    <script type="text/javascript">
+		function load_apis(){
+			initialize('//' + window.location.host + '/_ah/api')
+		}
+
+	</script>
+	<script src="https://apis.google.com/js/client.js?onload=load_apis"></script>
+{% endblock %}
+
+{% block head_css %}
+    {{ super() }}
+{% endblock %}
+
