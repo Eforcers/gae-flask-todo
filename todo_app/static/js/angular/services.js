@@ -1,35 +1,26 @@
-Todo_app.service('TodoService',function($q, $rootScope) {
-	
-  this.listTodos = function() {
-	  var deferred = $q.defer();
-	  gapi.client.todo.todos.list().execute(function(resp) {
-		 $rootScope.$apply(deferred.resolve(resp.items));
-	  });
-	  return deferred.promise;
-  };
-  
-  this.insertTodo = function(title) {
-	  var deferred = $q.defer();
-	  gapi.client.todo.todo.insert({'title':title}).execute(function(resp) {
-		 $rootScope.$apply(deferred.resolve(resp));
-	  });
-	  return deferred.promise;
-  };
+Todo_app.service('TodoService',function($q, $rootScope,$http) {
 
-
-  this.toggleTodo = function(id) {
-	  var deferred = $q.defer();
-	  gapi.client.todo.todo.toggle({'id':id}).execute(function(resp) {
-		 $rootScope.$apply(deferred.resolve(resp));
-	  });
-	  return deferred.promise;
-  };
-
-  this.removeTodo = function(id) {
-	  var deferred = $q.defer();
-	  gapi.client.todo.todo.delete({'id':id}).execute(function(resp) {
-		 $rootScope.$apply(deferred.resolve(resp));
-	  });
-	  return deferred.promise;
-  };
+    var service = this;
+    var builder = function (api, resource, method){
+        return function (args) {
+              var deferred = $q.defer();
+              gapi.client[api][resource][method](args).execute(function(resp) {
+                 $rootScope.$apply(deferred.resolve(resp));
+              });
+              return deferred.promise;
+        };
+    }
+    var loaded = false;
+    this.isLoaded = function() { return loaded; };
+    $http.get('/_ah/api/discovery/v1/apis/todo/v1/rest').success( function(data) {
+        console.log(data);
+        for (resource in data.resources){
+            for(method in data.resources[resource].methods){
+                service[method+resource] = builder('todo',resource,  method);
+                 console.log("Method "+method+resource+" created");
+            }
+        }
+        loaded = true;
+        $rootScope.$$phase || $rootScope.$apply();
+    });
 });

@@ -1,0 +1,19 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+    <div class="container" ng-app="todo_app">
+        {% block angular_content %}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block tail_js %}
+    <script type="text/javascript" src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
+    <script type="text/javascript" src="/static/js/angular/todo.js"></script>
+	<script type="text/javascript" src="/static/js/angular/services.js"></script>
+	<script type="text/javascript" src="/static/js/angular/controllers.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+{% endblock %}
+
+{% block head_css %}
+    {{ super() }}
+{% endblock %}
