@@ -43,7 +43,6 @@ Todo_app.service('EndpointService',function($q, $rootScope,$http) {
                     }
                 }
                 loaded = true;
-                //$rootScope.$$phase || $rootScope.$apply();
             });
             $rootScope.$$phase || $rootScope.$apply();
         }, apiRoot);
