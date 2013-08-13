@@ -2,6 +2,14 @@ Todo_app.service('EndpointService',function($q, $rootScope,$http) {
 
     var service = this;
     var http = $http;
+
+    /**
+     * build service methods from discovery document
+     * @param api
+     * @param resource
+     * @param method
+     * @returns {Function}
+     */
     var builder = function (api, resource, method){
         return function (args) {
               var deferred = $q.defer();
@@ -14,6 +22,11 @@ Todo_app.service('EndpointService',function($q, $rootScope,$http) {
     var loaded = false;
     this.isLoaded = function() { return loaded; };
 
+    /**
+     * brings the discovery document and adds methods in the service built from the information brought
+     * @param api
+     * @param version
+     */
     this.loadService = function(api, version){
         service.apiName = api;
         service.apiVersion = version;

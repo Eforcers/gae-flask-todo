@@ -20,11 +20,11 @@
                 <tr ng-repeat="todo in todos">
                     <td>{[{todo.title}]}</td>
                     <td><input type="checkbox" ng-model="todo.completed" ng-change='changeTodo(todo)'>  </td>
-                    <td><button type="button" ng-click="delTodo(todo)">Del</button> </td>
+                    <td><button type="button" class="btn" ng-click="delTodo(todo)">Del</button> </td>
                 </tr>
                 <tr>
                     <td><input type="text" ng-model="newTitle"> </td>
-                    <td><button type="button" class="btn" ng-click="addTodo()">Add</button></td>
+                    <td><button type="button" class="btn btn-primary" ng-click="addTodo()">Add</button></td>
                 <tr>
               </tbody>
             </table>
