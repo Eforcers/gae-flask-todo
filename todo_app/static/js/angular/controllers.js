@@ -16,14 +16,14 @@ todoCtrl = Todo_app.controller('todoCtrl', function ($window, $scope, EndpointSe
     });
 
     $scope.loadTodos = function(){
-        var promise = EndpointService.listtodos();
+        var promise = EndpointService.listTodos();
         promise.then(function(resp) {
             $scope.todos = resp.items
         });
     };
 
     $scope.addTodo = function(){
-        var promise = EndpointService.inserttodo({'title':$scope.newTitle});
+        var promise = EndpointService.insertTodo({'title':$scope.newTitle});
         promise.then(function(todo) {
             $scope.newTitle = ""
             setTimeout(function(){
@@ -34,14 +34,14 @@ todoCtrl = Todo_app.controller('todoCtrl', function ($window, $scope, EndpointSe
     };
 
     $scope.changeTodo = function(todo){
-        var promise = EndpointService.toggletodo({'id':todo.id});
+        var promise = EndpointService.toggleTodo({'id':todo.id});
         promise.then(function(todo) {
             console.log("task was toggle",todo);
         });
     };
 
     $scope.delTodo = function(todo){
-        var promise = EndpointService.deletetodo({'id':todo.id});
+        var promise = EndpointService.deleteTodo({'id':todo.id});
         promise.then(function(todo) {
             setTimeout(function(){
                 $scope.loadTodos();

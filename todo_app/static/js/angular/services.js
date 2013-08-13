@@ -24,8 +24,9 @@ Todo_app.service('EndpointService',function($q, $rootScope,$http) {
                 console.log(data);
                 for (resource in data.resources){
                     for(method in data.resources[resource].methods){
-                        service[method+resource] = builder(service.apiName,resource,  method);
-                        console.log("Method "+method+resource+" created");
+                        var capitalizedResource = resource[0].toUpperCase() + resource.substring(1);
+                        service[method+capitalizedResource] = builder(service.apiName,resource,  method);
+                        console.log("Method "+method+capitalizedResource+" created");
                     }
                 }
                 loaded = true;
