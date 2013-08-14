@@ -18,8 +18,5 @@ class TestCase(unittest.TestCase):
         os.close(self.db_fd)
         os.unlink(flaskr.app.config['DATABASE'])
 
-    def test_hola_mundo(self):
-        assert True
-
 if __name__ == '__main__':
     unittest.main()

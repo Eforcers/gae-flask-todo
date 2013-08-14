@@ -1,7 +1,13 @@
 APP_ENGINE_PATH = '/home/alessandro/google_appengine'
+APP_ENGINE_LIBS_PATH = '/home/alessandro/google_appengine/lib/'
+
+LIBS = ['yaml']
 
 import sys
 sys.path.insert(1, APP_ENGINE_PATH)
+
+for LIB in LIBS:
+    sys.path.insert(1, APP_ENGINE_LIBS_PATH +LIB)
 
 import unittest
 from models import TestModel
