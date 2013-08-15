@@ -41,7 +41,6 @@ todoCtrl = Todo_app.controller('todoCtrl', function ($window, $scope, EndpointSe
             setTimeout(function(){
                 $scope.loadTodos();
             }, 500);
-
         });
     };
 

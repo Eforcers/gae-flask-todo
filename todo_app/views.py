@@ -1,4 +1,5 @@
 from main import app
+from flask import render_template
 
 # Flask views
 @app.route('/')
@@ -9,3 +10,7 @@ def index():
 def warmup():
     #TODO: Warmup
     return 'Warming Up...'
+
+@app.route('/tests')
+def tests():
+    return render_template('tests.html')

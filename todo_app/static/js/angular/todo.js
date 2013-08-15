@@ -3,6 +3,7 @@
  */
 function init() {
   window.init();
+//  console.log('Endpoints client loaded.');
 }
 
 

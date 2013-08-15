@@ -1,4 +1,5 @@
 from google.appengine.api import users
+from flask import render_template
 from flask.ext.admin import BaseView, expose
 from flask.ext.admin.base import AdminIndexView
 from werkzeug.routing import RequestRedirect
@@ -11,6 +12,7 @@ class AuthView(BaseView):
             return True
         else:
             raise RequestRedirect(users.create_login_url(self.url))
+
 
 class AdminIndex(AuthView, AdminIndexView):
     @expose('/')
