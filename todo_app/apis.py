@@ -1,3 +1,4 @@
+import logging
 from google.appengine.ext import endpoints
 from protorpc import remote
 from todo_app.models import TodoModel
@@ -12,6 +13,7 @@ class TodoApi(remote.Service):
                       http_method='POST',
                       name='todo.insert')
     def TodoInsert(self, todo):
+        logging.info(todo)
         todo.completed = False
         todo.put()
         return todo

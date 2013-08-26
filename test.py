@@ -25,7 +25,8 @@ os.environ['SERVER_NAME'] = 'local'
 os.environ['SERVER_PORT'] = '8080'
 
 import unittest
-from tests.views_tests import *
+#from tests.views_tests import *
+from tests.api_test import *
 
 if __name__ == '__main__':
     unittest.main()
