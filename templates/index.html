@@ -2,12 +2,12 @@
 {% block angular_content %}
     <div ng-controller="todoCtrl" class="row">
         <div ng-show="!loaded">
-            <h3>loading</h3>
+            <h3 id="loading">loading</h3>
         </div>
 
         <div ng-show="loaded" class = "col-lg-6">
             <h2>Todo System</h2>
-            <h3>Todo</h3>
+            <h3 id="todo-title">Todo</h3>
             <table class="table table-hover ">
               <thead>
                 <tr>
@@ -18,13 +18,13 @@
               <tbody>
 
                 <tr ng-repeat="todo in todos">
-                    <td>{[{todo.title}]}</td>
+                    <td class="todo-title-cls">{[{todo.title}]}</td>
                     <td><input type="checkbox" ng-model="todo.completed" ng-change='changeTodo(todo)'>  </td>
                     <td><button type="button" class="btn" ng-click="delTodo(todo)">Del</button> </td>
                 </tr>
                 <tr>
-                    <td><input type="text" ng-model="newTitle"> </td>
-                    <td><button type="button" class="btn btn-primary" ng-click="addTodo()">Add</button></td>
+                    <td><input id="new-title-input" type="text" ng-model="newTitle"> </td>
+                    <td><button id="add-todo-btn" type="button" class="btn btn-primary" ng-click="addTodo()">Add</button></td>
                 <tr>
               </tbody>
             </table>

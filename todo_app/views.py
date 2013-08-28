@@ -10,7 +10,3 @@ def index():
 def warmup():
     #TODO: Warmup
     return 'Warming Up...'
-
-@app.route('/tests')
-def tests():
-    return render_template('tests.html')

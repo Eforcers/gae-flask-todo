@@ -1,6 +1,7 @@
 import os
 import sys
 
+PROJECT_PATH = "C:\Users\carlos.prieto\PycharmProjects\gae-flask-todo"
 APP_ENGINE_SDK = 'C:\Program Files (x86)\Google\google_appengine'
 LIBS = ['yaml-3.10',
         'protorpc',
@@ -12,7 +13,6 @@ LIBS = ['yaml-3.10',
         ]
 SEPARATOR = "\\"
 sys.path.insert(1, APP_ENGINE_SDK)
-sys.path.insert(2, os.path.join(os.path.abspath('.'), 'lib'))
 for LIB in LIBS:
     sys.path.append('%s%slib%s%s' % (APP_ENGINE_SDK,SEPARATOR,SEPARATOR,LIB))
 
@@ -25,8 +25,16 @@ os.environ['SERVER_NAME'] = 'local'
 os.environ['SERVER_PORT'] = '8080'
 
 import unittest
-#from tests.views_tests import *
+from tests.views_tests import *
 from tests.api_test import *
+
+
+test_gui = True
+if test_gui:
+    from tests.gui_test import *
+    GuiTest.APP_ENGINE_SDK = APP_ENGINE_SDK
+    GuiTest.PROJECT_PATH = os.path.dirname(__file__)
+
 
 if __name__ == '__main__':
     unittest.main()
