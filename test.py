@@ -1,7 +1,6 @@
 import os
 import sys
 
-PROJECT_PATH = "C:\Users\carlos.prieto\PycharmProjects\gae-flask-todo"
 APP_ENGINE_SDK = 'C:\Program Files (x86)\Google\google_appengine'
 LIBS = ['yaml-3.10',
         'protorpc',
@@ -11,10 +10,10 @@ LIBS = ['yaml-3.10',
         'ipaddr',
         'jinja2-2.6'
         ]
-SEPARATOR = "\\"
+
 sys.path.insert(1, APP_ENGINE_SDK)
 for LIB in LIBS:
-    sys.path.append('%s%slib%s%s' % (APP_ENGINE_SDK,SEPARATOR,SEPARATOR,LIB))
+    sys.path.append(os.path.join(APP_ENGINE_SDK,'lib',LIB))
 
 from google.appengine.tools import dev_appserver
 from google.appengine.tools.dev_appserver_main import ParseArguments
